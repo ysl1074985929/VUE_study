@@ -21,13 +21,21 @@
         </ul>
     </div>
     <script>
-        Vue.component('TodoItem', {
-            props: ['content'],
+        // Vue.component('TodoItem', {
+        //     props: ['content'],
+        //     template: '<li>{{content}}</li>'
+        // })
+
+        var TodoItem = {
+            props:['content'],
             template: '<li>{{content}}</li>'
-        })
+        }
 
         var app = new Vue({
             el: '.app',
+            components:{
+                TodoItem: TodoItem
+            },
             data: {
                 list: [],
                 inputValue: '初始的值'
