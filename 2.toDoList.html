@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- <script>
+        window.onload = function () {
+
+            var app = new Vue({
+                el:'.app',
+                data: {
+                    list: ['第一个值', '第二个值'],
+                    inputValue: '初始的值'
+                },
+                methods:{
+                    handleBtnClick: function(){
+                        this.list.push(this.inputValue);
+                        // alert(this.inputValue);
+                        this.inputValue = '';
+                    }
+                }
+            })
+
+        }
+        
+    </script> -->
+</head>
+
+<body>
+    <div class="app">
+        <input type="text" v-model='inputValue'>
+        <button class="btn" v-on:click='handleBtnClick'>提交</button>
+        <ul>
+            <li v-for='item in list'>
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+         
+    
+                var app = new Vue({
+                    el:'.app',
+                    data: {
+                        list: ['第一个值', '第二个值'],
+                        inputValue: '初始的值'
+                    },
+                    methods:{
+                        handleBtnClick: function(){
+                            this.list.push(this.inputValue);
+                            // alert(this.inputValue);
+                            this.inputValue = '';
+                        }
+                    }
+                })
+    
+            
+            
+        </script>
+</body>
+
+</html>
