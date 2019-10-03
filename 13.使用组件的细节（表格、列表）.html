@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <table>
+            <tbody>
+                <!-- 错误写法
+                    <row></row>
+                    <row></row>
+                    <row></row> 
+                -->
+
+                <!-- 正确写法 -->
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+
+        Vue.component('row', {
+            template: '<tr><td>this is a row</td></tr>'
+        })
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
