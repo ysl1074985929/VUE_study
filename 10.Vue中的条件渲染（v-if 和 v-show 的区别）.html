@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        v-if    为false 时，dom结构上没有东西，
+                为true 时，会将对应的元素渲染到 dom 上
+     -->
+     <!-- 
+        v-show    为false 时，相当于display: none
+                为true 时，相当于display: block
+     -->
+</head>
+
+<body>
+    <div id="root">
+        <div v-if='sth' data-test='v-if'>
+            {{message}}
+        </div>
+        <div v-show='sth' data-test='v-show'>
+            {{message}}
+        </div>
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                message: 'Hello World',
+                sth: false
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
