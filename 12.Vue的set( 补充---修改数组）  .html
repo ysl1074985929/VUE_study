@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        修改数组的第三种方法
+            Vue.set(vm.userInfo, 2, 22)  或者
+            vm.$set(vm.userInfo, 1, 11)
+     -->
+</head>
+<body>
+    <div id="root">
+        
+        <div v-for='(item) of userInfo'>
+            {{item}}
+        </div>
+        
+    </div>
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+               userInfo:[1, 2, 3, 4, 5]
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
