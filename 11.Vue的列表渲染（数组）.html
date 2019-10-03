@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        1.当修改数组中的数据时 应用以下方法
+
+            push        末尾添加
+            pop         删除末尾
+            shift       删除开头
+            unshift     开头添加
+            splice      截取
+            sort        排序
+            reverse     反转
+
+
+            练习：将world的改为world-old    
+                控制台：  vm.list.splice(1, 1, {id: '333', text:'Dell'})
+
+        2.当修改数组中的数据时 改变引用
+        控制台：
+                vm.list = [{
+                    id:'001',
+                    text:'我'
+                }, {
+                    id:'002',
+                    text:'超'
+                }, {
+                    id:'003',
+                    text:'人'
+                }, {
+                    id:'004',
+                    text:'不'
+                }, {
+                    id:'005',
+                    text:'飞'
+                }]
+     -->
+</head>
+<body>
+    <div id="root">
+        <template  v-for='(item, index) of list' 
+                :key='item.id'>
+            <div >
+                {{item.text}}----{{index}}
+            </div>
+            <div>
+                {{item.text}}
+        </div>
+        </template>
+        
+    </div>
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                list: [{
+                    id:'001',
+                    text:'hello'
+                }, {
+                    id:'002',
+                    text:'world'
+                }, {
+                    id:'003',
+                    text:'say'
+                }, {
+                    id:'004',
+                    text:'good'
+                }, {
+                    id:'005',
+                    text:'bye'
+                }]
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
