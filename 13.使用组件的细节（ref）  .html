@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    
+</head>
+<body>
+
+    <!-- 
+        使用 ref 给节点加一个标识，方便操作dom
+            使用$refs.hello 获取 
+                1. 当是在dom元素上的ref时获取的是 元素
+                2. 当是在组件上的ref时获取的是该组件的引用
+     -->
+
+    <div id="root">
+        <div    @click='handleDivClick'
+                ref='hello'>
+            hello world
+        </div>
+    </div>
+
+
+    <script>
+
+       
+
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                
+            },
+            methods:{
+                handleDivClick: function(){
+                    alert(this.$refs.hello.innerHTML);
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
