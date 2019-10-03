@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    
+</head>
+<body>
+
+    <!-- 
+        使用 ref 给节点加一个标识，方便操作dom
+            使用$refs.hello 获取 
+                1. 当是在dom元素上的ref时获取的是 元素
+                2. 当是在组件上的ref时获取的是该组件的引用
+     -->
+
+    <div id="root">
+        <counter ref='one' @change='handleChange'></counter>
+        <counter ref='two' @change='handleChange'></counter>
+        <div>{{total}}</div>
+    </div>
+
+
+    <script>
+
+       Vue.component('counter', {
+           template:'<div @click="handleClick">{{number}}</div>',
+           data: function(){
+               return {
+                   number: 0
+               }
+           },
+           methods:{
+            handleClick: function(){
+                this.number++;
+                // 当子组件的值发生变化时，向外触发一个change事件, 改事件在模板监听
+                this.$emit('change')
+            }
+           }
+       })
+
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                total: 0
+            },
+            methods:{
+                handleChange: function(){
+                    // console.log('is changing');
+                    // console.log(this.$refs.one.number)
+                    // console.log(this.$refs.two.number)
+                    this.total = this.$refs.one.number + this.$refs.two.number;
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
