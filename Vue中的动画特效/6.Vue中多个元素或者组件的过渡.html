@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>   
+    <style>
+    
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: opacity 1s;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="root">
+        <transition mode='in-out'>
+            <h1 v-if='show' key='helloNode'>hello world</h1>
+            <h1 v-else key='byeNode'>Bye World</h1>
+        </transition>
+        
+        <button @click='handleClick'>toggle</button>
+    </div>
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                show: true
+            },
+            methods:{
+                handleClick: function(){
+                    this.show = !this.show
+                },
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
