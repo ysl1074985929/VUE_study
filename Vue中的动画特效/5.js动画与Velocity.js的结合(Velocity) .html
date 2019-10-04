@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <!-- 
+        vue 中提供了动画钩子 给js动画调用
+
+        入场动画：
+            @before-enter   绑定动画出现前的事件,
+                            该事件中有一个参数 el 指的就是transition标签所包裹的元素
+            @enter 绑定before-enter后的整个动画的事件
+                    两个参数 el done：回调函数
+                    动画执行完成后，执行 done回调函数
+            @after-enter  在 done回调函数执行后执行
+
+        出场动画
+            类似入场
+                @before-leave
+                @leave
+                @after-leave
+
+     -->
+</head>
+<body>
+    <div id="root">
+        <transition name='fade'
+                    @before-enter='handleBeforeEnter'
+                    @enter='handleEnter'
+                    @after-enter='handleAfterEnter'>
+            <h1 v-show='show'>hello world</h1>
+        </transition>
+        
+        <button @click='handleClick'>toggle</button>
+    </div>
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                show: true
+            },
+            methods:{
+                handleClick: function(){
+                    this.show = !this.show
+                },
+                handleBeforeEnter:function(el){
+                    // alert('beforeEnter')
+                    el.style.color = 'red'
+                },
+                handleEnter:function(el, done){
+                    setTimeout(() => {
+                        el.style.color = 'green';
+
+                        setTimeout(() => {
+                            done(console.log('is finish'));
+                        }, 4000);
+                        
+                    }, 2000)
+                },
+                handleAfterEnter:function(el){
+                    el.style.color = 'black'
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
