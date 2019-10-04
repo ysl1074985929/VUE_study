@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <!-- 
+        要给列表做动画需要在外面用transtion-group标签包裹 
+            相当于给每列代码上加上transition标签：如下
+                    <transition>
+                        <div></div>
+                    </transition>
+                    <transition>
+                        <div></div>
+                    </transition>
+                    <transition>
+                        <div></div>
+                    </transition> ...
+        -->
+     <style>
+     
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: opacity 1s;
+        }
+
+     </style>
+</head>
+<body>
+    
+    <div id="root">
+        <transition-group>
+            <div v-for='item in list' :key='item.id'>
+                {{item.title}}
+            </div>
+        </transition-group>
+        
+        <button @click='clickBtnEvent'>addBtn</button>
+    </div>
+
+
+    <script>
+
+        var count = 0;
+
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                list: []
+            },
+            methods:{
+                clickBtnEvent: function(){
+                    this.list.push({
+                        id: count++,
+                        title:'hello World'
+                    })
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
