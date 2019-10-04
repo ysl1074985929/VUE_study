@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="../vue/vue.js"></script>   
+    <!-- 
+        多个元素过渡：
+            需要指定key值
+     -->
     <style>
     
         .v-enter,
@@ -22,6 +26,10 @@
 </head>
 <body>
     <div id="root">
+        <!-- 
+            mode='in-out' 先显示在隐藏
+            mode='out-in' 先隐藏再显示
+         -->
         <transition mode='in-out'>
             <h1 v-if='show' key='helloNode'>hello world</h1>
             <h1 v-else key='byeNode'>Bye World</h1>
