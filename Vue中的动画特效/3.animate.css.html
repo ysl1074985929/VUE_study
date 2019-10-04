@@ -12,13 +12,18 @@
             必须自定义名字           enter-active-class='animated hinge'
                                        leave-active-class='animated swing'
 
+        刚进入时没有动画：
+            transition标签中添加  appear 以及 appear-active-class='animated hinge'
+
      -->
 </head>
 <body>
     <div class="root">
         <button @click='handleBtnClick'>toggle</button>
-        <transition enter-active-class='animated hinge'
-                    leave-active-class='animated swing'>
+        <transition appear
+                    enter-active-class='animated hinge'
+                    leave-active-class='animated swing'
+                    appear-active-class='animated hinge'>
             <h1 v-if='show'>hello World</h1>
         </transition>
         
