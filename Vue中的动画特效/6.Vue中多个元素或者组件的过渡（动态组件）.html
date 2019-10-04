@@ -23,8 +23,9 @@
 <body>
     <div id="root">
         <transition mode='out-in'>
-            <child v-if='show'></child>
-            <child-one v-else></child-one>
+            <component :is='type'></component>
+            <!-- <child v-if='show'></child>
+            <child-one v-else></child-one> -->
             <!-- <h1 v-if='show' key='helloNode'>hello world</h1>
             <h1 v-else key='byeNode'>Bye World</h1> -->
         </transition>
@@ -45,11 +46,11 @@
         var vm = new Vue({
             el:'#root',
             data:{
-                show: true
+                type: 'child'
             },
             methods:{
                 handleClick: function(){
-                    this.show = !this.show
+                    this.type = this.type === 'child' ? 'child-one' : 'child'
                 },
                 
             }
