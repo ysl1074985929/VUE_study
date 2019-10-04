@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        props特性 : 父组件向子组件用属性传值时， 子组件中 用props接受
+
+        非props特性： 
+                        子组件中没有用 props 接收,界面上没有，dom结构中有
+
+     -->
+</head>
+<body>
+    <div class="root">
+        <child content='hello '></child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            // props:{
+            //     content: {
+            //         type: String,
+            //         // required: false,
+            //         // default: 'default Value'
+            //         validator: function(value){
+            //             return (value.length > 6)
+            //         }
+            //     }
+            // },
+            template:'<div>{{content}}</div>'
+        })
+    
+        var vm = new Vue({
+            el:'.root',
+
+        })
+    
+    </script>
+</body>
+</html>
