@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        动态组件
+            component标签  通过 is 绑定属性 进行组件的切换
+                    <component :is='type'></component>
+
+            在进行切换时： 切换一次就会将 要隐藏的销毁 要显示的创建
+                这个是比较耗费性能的，可以用 v-once 属性令其保存，无需再创建销毁
+
+     -->
+</head>
+<body>
+    <div id="root">
+        <component :is='type'></component>
+        <!-- <child-one v-if='type === "child-one"'></child-one>
+        <child-two v-if='type === "child-two"'></child-two> -->
+        <button @click='handleBtnClick'>change</button>
+    </div>
+
+
+    <script>
+        
+        Vue.component('child-one', {
+            template:'<div v-once>child-one</div>'
+        })
+        Vue.component('child-two', {
+            template:'<div v-once>child-two</div>'
+        })
+
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                type:'child-one'
+            },
+            methods:{
+                handleBtnClick: function(){
+                    this.type = this.type === 'child-one' ? 'child-two':'child-one'
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
