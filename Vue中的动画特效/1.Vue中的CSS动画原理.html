@@ -6,11 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="../vue/vue.js"></script>
+    <style>
+    
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: opacity 3s;
+        }
+    
+    </style>
 </head>
 <body>
     <div class="root">
         <button @click='handleBtnClick'>toggle</button>
-        <h1 v-if='show'>hello World</h1>
+        <transition>
+            <h1 v-if='show'>hello World</h1>
+        </transition>
+        
     </div>
 
 
