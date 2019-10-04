@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        1.我们可以对父组件传进来的参数进行一些约束
+            props:{
+                content: Boolean
+            },
+
+            要求传进来的参数为 Boolean 类型
+
+        2.其他校验
+            props:{
+                content: {
+                    type: String,               类型为String
+                    required: true,             必须要传content（ 体现在·中间） -》 <child  ····content='hello world'·····></child>
+                    default: 'default Value'    若传进来有指定值，则使用指定的值，没有（没有·中间）则默认值
+                }
+            },
+
+        3.复杂校验
+        validator: function(value){
+                        return (value.length > 6)
+                    }
+
+                    要求其传进来的字符串长度必须大于6
+     -->
+</head>
+<body>
+    <div class="root">
+        <child content='hello '></child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            props:{
+                content: {
+                    type: String,
+                    // required: false,
+                    // default: 'default Value'
+                    validator: function(value){
+                        return (value.length > 6)
+                    }
+                }
+            },
+            template:'<div>{{content}}</div>'
+        })
+    
+        var vm = new Vue({
+            el:'.root',
+
+        })
+    
+    </script>
+</body>
+</html>
