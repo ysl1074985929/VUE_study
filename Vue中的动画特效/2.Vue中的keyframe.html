@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        @keyframes bounce-in {
+            0%{
+                transform: scale(0);
+            }
+            50%{
+                transform: scale(1.5);
+
+            }
+            100%{
+                transform: scale(1);
+
+            }
+        }
+
+        .v-enter-active{
+            animation: bounce-in 1s;
+            transform-origin: left center;
+        }
+
+        .v-leave-active{
+            animation: bounce-in 1s reverse;
+            transform-origin: left center;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="root">
+        <button @click='handleBtnClick'>toggle</button>
+        <transition>
+            <h1 v-if='show'>hello World</h1>
+        </transition>
+        
+    </div>
+
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'.root',
+            data:{
+                show:true
+            },
+            methods:{
+                handleBtnClick: function(){
+                    this.show = !this.show
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
