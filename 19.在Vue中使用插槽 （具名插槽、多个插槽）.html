@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        当有多个插槽时，可以给每个插槽指定对应的名字 slot='header'
+            这样在模板中使用 <slot name="header"></slot> 时可以显示相应的插槽
+            同样可指定默认值
+     -->
+</head>
+<body>
+    <div id="root">
+        <child>
+            <div class="header" slot='header'>header</div>
+            <div class="footer" slot='footer'>footer</div>
+        </child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            
+            template: '<div> <slot name="header"> <h1>default Value</h1> </slot>  <p>hello</p> <slot name="footer"></slot> </div>'
+        })
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
