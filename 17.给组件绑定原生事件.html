@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        一般情况下，向组件绑定事件，是绑定的自定义事件
+            <child @click='handleClick'></child> 中 @click 并不是点击事件，click只是事件的名字，可以改为任意其他名字
+                可在后边加上 .native 使其成原生的点击事件
+     -->
+     <!-- 
+         Vue.component('child', {
+            template:'<div @click="abc">hello</div>',
+            methods:{
+                abc: function(){
+                    alert('abc')
+                }
+            }
+        })
+        这个是想组件绑定原生点击事件
+      -->
+
+      <!-- 
+          Vue.component('child', {
+            template:'<div @click="abc">hello</div>',
+            methods:{
+                abc: function(){
+                    this.$emit('free')
+                }
+            }
+        })
+        这个绑定的是指定事件
+            也是子组件向父组件传值的形式
+       -->
+
+</head>
+<body>
+    <div class="root">
+        <child @click.native='handleClick'></child>
+        <!-- <child @free='handleClick'></child> -->
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            template:'<div @click="abc">hello</div>',
+            methods:{
+                abc: function(){
+                    this.$emit('free')
+                }
+            }
+        })
+    
+        var vm = new Vue({
+            el:'.root',
+            methods:{
+                handleClick: function(){
+                    alert('handleClick')
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
