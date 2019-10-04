@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <link rel="stylesheet" href="../css/animate.css">
+    <!-- 
+
+
+        当存在动画以及transition时，
+            1. 可以在 transition标签设置 type决定整个动画的时长
+                如：        type='transition' 整个动画的时长以 transition的时长为准
+            2. 可以在 transition标签设置 :duration 自定义时长
+                如:         :duration='4000' 整个动画时长为 4s
+                            :duration='{enter: 5000, leave: 10000}' 入场5s 出厂10s
+                
+
+     -->
+     <style>
+     
+     .fade-enter,
+     .fade-leave-to{
+         opacity: 0;
+     }
+     .fade-enter-active,
+     .fade-leave-active{
+         transition: opacity 3s;
+     }
+     
+     </style>
+</head>
+<body>
+    <div class="root">
+        <button @click='handleBtnClick'>toggle</button>
+        <transition 
+                    :duration='4000'
+                    type='transition'
+                    name='fade'
+                    appear
+                    enter-active-class='animated hinge fade-enter-active'
+                    leave-active-class='animated swing fade-leave-active'
+                    appear-active-class='animated hinge'>
+            <h1 v-if='show'>hello World</h1>
+        </transition>
+        
+    </div>
+
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'.root',
+            data:{
+                show:true
+            },
+            methods:{
+                handleBtnClick: function(){
+                    this.show = !this.show
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
