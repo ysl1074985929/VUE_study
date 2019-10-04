@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <link rel="stylesheet" href="../css/animate.css">
+    <!-- 
+        使用animated.css 时
+            必须自定义名字           enter-active-class='animated hinge'
+                                       leave-active-class='animated swing'
+
+     -->
+</head>
+<body>
+    <div class="root">
+        <button @click='handleBtnClick'>toggle</button>
+        <transition enter-active-class='animated hinge'
+                    leave-active-class='animated swing'>
+            <h1 v-if='show'>hello World</h1>
+        </transition>
+        
+    </div>
+
+
+
+    <script>
+    
+        var vm = new Vue({
+            el:'.root',
+            data:{
+                show:true
+            },
+            methods:{
+                handleBtnClick: function(){
+                    this.show = !this.show
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
