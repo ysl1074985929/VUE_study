@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+         
+        1.  Vue.prototype.bus = new Vue()
+        2. 给子组件绑定事件
+            向外传值 this.bus.$emit('change', this.content)
+        
+        3. 添加 mounted 生命周期钩子（该组件被挂载时触发）监听'change’事件
+            mounted: function(){
+                this.bus.$on('change', function(msg){
+                    alert(msg)
+                })
+            }
+
+     -->
+</head>
+<body>
+    <div id="root">
+        <child content='hello'></child>
+        <child content='world'></child>
+    </div>
+
+
+    <script>
+        Vue.prototype.bus = new Vue()
+        
+        Vue.component('child', {
+            props:{
+                content:    String
+            },
+            data: function(){
+                return{
+                    innerContent:this.content
+                }
+            },
+            template:'<div @click="handleClick">{{innerContent}}</div>',
+            methods:{
+                handleClick:function(){
+                    this.bus.$emit('change', this.innerContent)
+                }
+            },
+            mounted: function(){
+                // 下面的this发生变化所以要保存this
+                var this_ = this;
+                this.bus.$on('change', function(msg){
+                    this_.innerContent = msg;
+                })
+            }
+        })
+
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
