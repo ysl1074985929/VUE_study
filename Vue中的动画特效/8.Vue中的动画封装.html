@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <!-- 
+
+        动画封装
+            写成组件的形式结合插槽
+
+        最好是利用js动画的形式，将动画一起写到组件中
+
+     -->
+</head>
+<body>
+    <div id="root">
+        <fade :show='show'>
+            <h1>hello</h1>
+        </fade>
+
+        <fade :show='show'>
+                <h2>world</h2>
+            </fade>
+        
+        <button @click='handleBtnClick'>toggle</button>
+    </div>
+
+
+    <script>
+        Vue.component('fade', {
+            props:['show'],
+            template:`
+                        <transition mode='out-in' 
+                                    @before-enter='handleBeforeEnter'
+                                    @enter='handelEnter'
+                                    @after-enter='handleAfterEnter'>
+                            <slot v-if='show'     ></slot>
+                        </transition>
+                     `,
+            methods:{
+                handleBeforeEnter: function(el){
+                    el.style.color = 'red'
+                },
+                handelEnter: function(el, done){
+                    setTimeout(() => {
+                        el.style.color = 'green';
+                        done(console.log('over'));
+                    }, 1500)
+                    
+                    
+                },
+                handleAfterEnter: function(el){
+                    setTimeout(() => {
+                        el.style.color = 'black';
+
+                    }, 1500)
+
+                }
+            }
+        })
+       
+
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                show: true
+            },
+            methods:{
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
