@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue/vue.js"></script>
+    <!-- 
+        插槽 直接在组件中添加组件，在模板中用slot标签渲染
+
+
+
+            <slot>默认值</slot>：定义默认值，dom中不会显示slot标签
+     -->
+</head>
+<body>
+    <div id="root">
+        <child>
+            <!-- <p>Dell</p> -->
+        </child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            
+            template: '<div> <p>hello</p> <slot>默认值</slot> </div>'
+        })
+    
+        var vm = new Vue({
+            el:'#root',
+            data:{
+                
+            },
+            methods:{
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>
